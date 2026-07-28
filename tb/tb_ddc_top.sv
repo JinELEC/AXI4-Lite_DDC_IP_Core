@@ -50,13 +50,14 @@ module tb_ddc_top;
         phase_word = '0;
 
         @(posedge clk);
+
         x_i = 100;
         phase_word = 10; // low frequency
+        repeat(3000) @(posedge clk);
 
-        repeat(2000) @(posedge clk);
         @(posedge clk);
         phase_word = 60; // high frequency
-        repeat(2000) @(posedge clk);
+        repeat(3000) @(posedge clk);
     end
     endtask
 
@@ -98,17 +99,27 @@ module tb_ddc_top;
         phase_word = 10; // low frequency
         repeat(10000) @(posedge clk);
 
-        /* @(posedge clk);
-        phase_word = 30; // low frequency
-        repeat(3000) @(posedge clk);
+        $fclose(fout);
+        $fclose(cordic_file);
+        $finish;
+    end
 
-        @(posedge clk);
-        phase_word = 60; // low frequency
-        repeat(3000) @(posedge clk); */
+    // ------------------------------------------------------
+    // CORDIC output file
+    // ------------------------------------------------------
+    integer cordic_file;
+    initial begin
+        cordic_file = $fopen("cordic_out.txt", "w");
 
-    $fclose(fout);
-    $fclose(cordic_file);
-    $finish;
+        if(cordic_file == 0) begin
+            $display("CORDIC output file open error");
+            $finish;
+        end
+    end
+
+    always_ff @(posedge clk) begin
+        if(en_i)
+            $fdisplay(cordic_file, "%0d", DDC_TOP.wire_x);
     end
 
     // ------------------------------------------------------
@@ -128,24 +139,6 @@ module tb_ddc_top;
     if(en_i)
         $fdisplay(fout, "%0d", x_o);
     end 
-
-    // ------------------------------------------------------
-    // CORDIC output file
-    // ------------------------------------------------------
-    integer cordic_file;
-    initial begin
-        cordic_file = $fopen("cordic_out.txt", "w");
-
-        if(cordic_file == 0) begin
-            $display("CORDIC output file open error");
-            $finish;
-        end
-    end
-    
-    always_ff @(posedge clk) begin
-        if(en_i)
-            $fdisplay(cordic_file, "%0d", DDC_TOP.wire_x);
-    end
 
     ddc_top DDC_TOP(
         .clk            (clk),
