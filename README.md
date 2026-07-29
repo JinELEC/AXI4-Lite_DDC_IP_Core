@@ -58,9 +58,9 @@ The 240 kHz component indicates the desired down-converted signal, while the 440
 
 ## FPGA Resource Utilization and Performance Analysis
 The hardware resource and performance were evaluated for different FIR filter tap configurations.
-
 | FIR Taps | LUT | FF | DSP | Total Power | Fmax |
 |:--------:|----:|---:|----:|------------:|-----:|
 | 16-tap | 860 | 771 | 8 | 0.12 W | 117.21 MHz |
 | 32-tap | 1751 | 1302 | 32 | 0.172 W | 83.55 MHz |
 | 64-tap | 4515 | 2304 | 128 | 0.345 W | 57.60 MHz |
+
