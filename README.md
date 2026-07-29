@@ -59,7 +59,7 @@ The 240 kHz component indicates the desired down-converted signal, while the 440
 ## FPGA Resource Utilization and Performance Analysis
 The hardware resource and performance were evaluated for different FIR filter tap configurations.
 
-The results shows the trade-offs between filtering performance, FPGA resource usage, power consumption, and maximum operating frequency. 
+The results show the trade-offs between filtering performance, FPGA resource usage, power consumption, and maximum operating frequency. 
 | FIR Taps | LUT | FF | DSP | Total Power | Fmax |
 |--------|----|---|----|------------|-----|
 | 16-tap | 860 | 771 | 8 | 0.12 W | 117.21 MHz |
@@ -73,4 +73,4 @@ The DDC using 16-tap FIR achieves the highest operating frequency and lowest res
 ## Conclusion
 The DDC architecture was successfully implemented using a phase accumulator, CORDIC-based digital mixer, and parameterized FIR filter. The design was verified through simulation and frequency-domain analysis, confirming correct frequency translation and attenuation.
 
-The results demonstrate the trade-off between DDC with different FIR taps and FPGA resource utilization. Increasing the number of FIR taps improves attenuation performance but requires hardware complexity, higher power consumption, and reduced maximum operating frequency.
+The results demonstrate the trade-off between DDC with different FIR taps and FPGA resource utilization. Increasing the number of FIR taps improves attenuation performance but requires greater hardware complexity, higher power consumption, and reduced maximum operating frequency.
