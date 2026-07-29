@@ -8,7 +8,6 @@
 - [Result and Analysis](#result-and-analysis)
 - [FPGA Resource Utilization](#fpga-resource-utilization-and-performance-analysis)
 - [Conclusion](#conclusion)
-- [License](#license)
 
 ## Introduction
 A Digital Down Converter (DDC) is widely used in digital communication systems to convert a digitized input signal from an intermediate frequency (IF) to baseband. This frequency translation enables efficient digital signal processing by shifting the desired signal to a lower frequency range and suppressing unwanted frequency components through filtering.
