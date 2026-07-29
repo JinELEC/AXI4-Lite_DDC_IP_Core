@@ -47,7 +47,7 @@ The ModelSim waveform shows the time-domain output of the DDC for different FIR 
 ![Frequency-Domain_Verification](docs/FFT_Comparison.png)
 FFT analysis using MATLAB was then performed to evaluate the frequency response and attenuation of different FIR configurations.
 
-### Frequency attenuation comparison 
+### Frequency Attenuation Comparison 
 | Tap | 240 kHz | 440 kHz | 
 |--------|-----|----|
 | 16 | -0.207 dB | -0.620 dB | 
@@ -55,3 +55,12 @@ FFT analysis using MATLAB was then performed to evaluate the frequency response 
 | 64 | -4.88 dB | -21.19 dB |
 
 The 240 kHz component indicates the desired down-converted signal, while the 440 kHz component represents an unwanted frequency component. Increasing the number of FIR taps improves the attenuation of unwanted components.
+
+## FPGA Resource Utilization and Performance Analysis
+The hardware resource and performance were evaluated for different FIR filter tap configurations.
+
+| FIR Taps | LUT | FF | DSP | Total Power | Fmax |
+|:--------:|----:|---:|----:|------------:|-----:|
+| 16-tap | 860 | 771 | 8 | 0.12 W | 117.21 MHz |
+| 32-tap | 1751 | 1302 | 32 | 0.172 W | 83.55 MHz |
+| 64-tap | 4515 | 2304 | 128 | 0.345 W | 57.60 MHz |
