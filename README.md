@@ -42,7 +42,7 @@ The simulation results confirm correct operation of the DDC for different FIR ta
 
 ### Test 2: DDC Verification Using Recorded ADC Samples
 ![Frequency-Domain_Verification](docs/OperateComparison.png)
-The DDC was evaluated using recorded ADC sample data to verify its operation under real-world conditions.
+The DDC was evaluated using recorded ADC sample data to analyse frequency translation and filtering performance.
 
 ![Frequency-Domain_Verification](docs/FFT_Comparison.png)
 FFT analysis using MATLAB was then performed to evaluate the frequency response and attenuation of different FIR configurations.
@@ -53,3 +53,5 @@ FFT analysis using MATLAB was then performed to evaluate the frequency response 
 | 16 | -0.207 dB | -0.620 dB | 
 | 32 | -1.86 dB | -5.20 dB |
 | 64 | -4.88 dB | -21.19 dB |
+
+The 240 kHz component indicates the desired down-converted signal, while the 440 kHz component represents an unwanted frequency component. Increasing the FIR tap improves the attenuation of unwanted components.
