@@ -35,5 +35,7 @@ The design was verified in two stages. First, the functionality of the DDC was v
 Second, the complete DDC was verified using recorded ADC sample data to evaluate the frequency response of the DDC. FFT analysis was performed using MATLAB to compare the attenuation of the desired signal and unwanted frequency components for each FIR filter configuration.
 
 ## Result and Analysis
-### FIR Tap Configuration Comparison
+### Test 1: Functional Verification
 ![FIR_Tap_Configuration_Comparison](docs/NormalComparison.png)
+Comparison of ModelSim waveforms of the DDC using 16-, 32-, and 64-tap FIR filters with fixed ADC input value and a fixed phase word. 
+
