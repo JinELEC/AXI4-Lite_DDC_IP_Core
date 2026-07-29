@@ -67,3 +67,5 @@ The results shows the trade-offs between filtering performance, FPGA resource us
 | 64-tap | 4515 | 2304 | 128 | 0.345 W | 57.60 MHz |
 
 As the number of taps increases, the hardware resource utilization and power consumption increase due to the increased number of DSPs and registers. However, a higher number of taps shows improved filtering performance with better attenuation of unwanted frequency components. 
+
+The DDC using 16-tap FIR achieves the highest operating frequency and lowest resource usage, but shows limited attenuation. In contrast, 64-tap FIR shows better attenuation, operates at reduced frequency with increased hardware complexity. 
