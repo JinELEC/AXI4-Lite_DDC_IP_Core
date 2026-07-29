@@ -65,3 +65,5 @@ The results shows the trade-offs between filtering performance, FPGA resource us
 | 16-tap | 860 | 771 | 8 | 0.12 W | 117.21 MHz |
 | 32-tap | 1751 | 1302 | 32 | 0.172 W | 83.55 MHz |
 | 64-tap | 4515 | 2304 | 128 | 0.345 W | 57.60 MHz |
+
+As the number of taps increases, the hardware resource utilization and power consumption increase due to the increased number of DSPs and registers. However, a higher number of taps shows improved filtering performance with better attenuation of unwanted frequency components. 
