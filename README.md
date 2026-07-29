@@ -54,4 +54,4 @@ FFT analysis using MATLAB was then performed to evaluate the frequency response 
 | 32 | -1.86 dB | -5.20 dB |
 | 64 | -4.88 dB | -21.19 dB |
 
-The 240 kHz component indicates the desired down-converted signal, while the 440 kHz component represents an unwanted frequency component. Increasing the FIR tap improves the attenuation of unwanted components.
+The 240 kHz component indicates the desired down-converted signal, while the 440 kHz component represents an unwanted frequency component. Increasing the number of FIR taps improves the attenuation of unwanted components.
