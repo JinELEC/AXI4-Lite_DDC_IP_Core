@@ -42,3 +42,14 @@ The simulation results confirm correct operation of the DDC for different FIR ta
 
 ### Test 2: DDC Verification Using Recorded ADC Samples
 ![Frequency-Domain_Verification](docs/OperateComparison.png)
+The DDC was evaluated using recorded ADC sample data to verify its operation under real-world conditions.
+
+![Frequency-Domain_Verification](docs/FFT_Comparison.png)
+FFT analysis using MATLAB was then performed to evaluate the frequency response and attenuation of different FIR configurations.
+
+## Frequency attenuation comparison 
+| Tap | 240 kHz | 440 kHz | 
+|--------|-----|----|
+| 16 | -0.207 dB | -0.620 dB | 
+| 32 | -1.86 dB | -5.20 dB |
+| 64 | -4.88 dB | -21.19 dB |
