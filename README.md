@@ -62,6 +62,15 @@ A previously developed parameterized FIR accelerator was used and filter coeffic
     └── ...                     # Diagrams and result images
 ```
 
+### Key Parameters
+| Parameter | Value |
+|---|---|
+| Clock Frequency | 100 MHz |
+| ADC Sampling Rate | 12.5 MSPS |
+| ADC Input Width | 8-bit signed |
+| Phase Word Width | 10-bit |
+| DDC Output Width | 16 / 32 / 64-bit (depends on FIR tap configuration) |
+| FIR Tap Configurations | 16 / 32 / 64 |
 
 ## Verification Methodology
 The design was verified in two stages. First, the functionality of the DDC was validated using fixed ADC input samples and a fixed phase word. The generated I/Q outputs and filtered responses were analysed for different FIR tap configurations (16-, 32-, and 64-taps).
