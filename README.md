@@ -41,4 +41,4 @@ Comparison of ModelSim waveforms of the DDC using 16-, 32-, and 64-tap FIR filte
 The simulation results confirm correct operation of the DDC for different FIR tap configurations. Each component operates correctly after the pipelined latency.
 
 ### Test 2: Frequency-Domain Verification
-![Frequency-Domain_Verification](docs/NormalComparison.png)
+![Frequency-Domain_Verification](docs/OperateComparison.png)
