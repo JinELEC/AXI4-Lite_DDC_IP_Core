@@ -46,6 +46,7 @@ A previously developed parameterized FIR accelerator was used and filter coeffic
 - FPGA: Xilinx Artix-7
 
 ### Repository Structure
+''' 
 ├── rtl/
 │   ├── ddc_top.sv              # Top-level DDC module
 │   ├── phase_accumulator.sv    # Phase accumulator
@@ -56,6 +57,7 @@ A previously developed parameterized FIR accelerator was used and filter coeffic
 └── docs/
     ├── adc_samples.txt         # Recorded ADC sample data used for verification
     └── ...                     # Diagrams and result images
+'''
 
 
 ## Verification Methodology
