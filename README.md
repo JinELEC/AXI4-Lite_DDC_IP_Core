@@ -6,7 +6,7 @@ In this project, a phase accumulator, a CORDIC-based digital mixer, and a parame
 
 ## Architecture
 ### Block Diagram
-![DDC Block Diagram](docs/DDC_BlockDiagram.png)
+![DDC Block Diagram](docs/DDC_BlockDiagram.PNG)
 
 ### Phase Accumulator
 The phase accumulator generates a continuously increasing phase value by accumulating a phase increment. The generated phase returns to its initial value after completing a rotation and is used as the input angle for the CORDIC mixer. 
