@@ -40,5 +40,5 @@ Second, the complete DDC was verified using recorded ADC sample data to evaluate
 Comparison of ModelSim waveforms of the DDC using 16-, 32-, and 64-tap FIR filters with fixed ADC input value and a fixed phase word. 
 The simulation results confirm correct operation of the DDC for different FIR tap configurations. Each component operates correctly after the pipelined latency.
 
-### Test 2: Frequency-Domain Verification
+### Test 2: DDC Verification Using Recorded ADC Samples
 ![Frequency-Domain_Verification](docs/OperateComparison.png)
