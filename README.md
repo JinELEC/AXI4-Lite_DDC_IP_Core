@@ -47,7 +47,7 @@ The DDC was evaluated using recorded ADC sample data to verify its operation und
 ![Frequency-Domain_Verification](docs/FFT_Comparison.png)
 FFT analysis using MATLAB was then performed to evaluate the frequency response and attenuation of different FIR configurations.
 
-## Frequency attenuation comparison 
+### Frequency attenuation comparison 
 | Tap | 240 kHz | 440 kHz | 
 |--------|-----|----|
 | 16 | -0.207 dB | -0.620 dB | 
