@@ -42,7 +42,7 @@ The simulation results confirm correct operation of the DDC for different FIR ta
 
 ### Test 2: DDC Verification Using Recorded ADC Samples
 ![Frequency-Domain_Verification](docs/OperateComparison.png)
-The DDC was evaluated using recorded ADC sample data to analyse frequency translation and filtering performance.
+The ModelSim waveform shows the time-domain output of the DDC for different FIR tap configurations. As the number of FIR taps increases, the filtered output becomes smoother due to improved suppression of unwanted frequency components.
 
 ![Frequency-Domain_Verification](docs/FFT_Comparison.png)
 FFT analysis using MATLAB was then performed to evaluate the frequency response and attenuation of different FIR configurations.
