@@ -33,3 +33,7 @@ A previously developed parameterized FIR accelerator was used and filter coeffic
 The design was verified in two stages. First, the functionality of the DDC was validated using fixed ADC input samples and a fixed phase word. The generated I/Q outputs and filtered responses were analysed for different FIR tap configurations (16-, 32-, and 64-taps).
 
 Second, the complete DDC was verified using recorded ADC sample data to evaluate the frequency response of the DDC. FFT analysis was performed using MATLAB to compare the attenuation of the desired signal and unwanted frequency components for each FIR filter configuration.
+
+## Result and Analysis
+### FIR Tap Configuration Comparison
+![FIR_Tap_Configuration_Comparison](docs/NormalComparison.png)
