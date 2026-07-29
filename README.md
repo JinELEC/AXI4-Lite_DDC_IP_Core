@@ -48,11 +48,11 @@ The ModelSim waveform shows the time-domain output of the DDC for different FIR 
 FFT analysis using MATLAB was then performed to evaluate the frequency response and attenuation of different FIR configurations.
 
 ### Frequency Attenuation Comparison 
-| Tap | 240 kHz | 440 kHz | 
+| FIR Taps | 240 kHz | 440 kHz | 
 |--------|-----|----|
-| 16 | -0.207 dB | -0.620 dB | 
-| 32 | -1.86 dB | -5.20 dB |
-| 64 | -4.88 dB | -21.19 dB |
+| 16-tap | -0.207 dB | -0.620 dB | 
+| 32-tap | -1.86 dB | -5.20 dB |
+| 64-tap | -4.88 dB | -21.19 dB |
 
 The 240 kHz component indicates the desired down-converted signal, while the 440 kHz component represents an unwanted frequency component. Increasing the number of FIR taps improves the attenuation of unwanted components.
 
