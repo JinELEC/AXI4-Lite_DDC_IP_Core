@@ -1,4 +1,5 @@
 # Digital Down Converter (DDC)
+
 ## Introduction
 A Digital Down Converter (DDC) is widely used in digital communication systems to convert a digitized input signal from an intermediate frequency (IF) to baseband. This frequency translation enables efficient digital signal processing by shifting the desired signal to a lower frequency range and suppressing unwanted frequency components through filtering.
 
