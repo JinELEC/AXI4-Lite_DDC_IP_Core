@@ -56,6 +56,8 @@ A previously developed parameterized FIR accelerator was used and filter coeffic
 │   └── tb_ddc_top.sv           # Testbench for top-level DDC
 └── docs/
     ├── adc_samples.txt         # Recorded ADC sample data used for verification
+    ├── fir_coefficients.m      # Filter coefficients generation
+    ├── fft_analysis.m          # FFT analysis of CORDIC and DDC output
     └── ...                     # Diagrams and result images
 ```
 
