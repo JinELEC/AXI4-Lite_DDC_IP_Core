@@ -54,9 +54,7 @@ parameter slv_reg1_addr = 6'h04;
 parameter slv_reg2_addr = 6'h08;
 parameter slv_reg3_addr = 6'h12;
 
-// ==============================================================
-// 모든 Output 포트를 위한 내부 신호 선언 (RTL 표준 관례)
-// ==============================================================
+// Output ports
 // 1. write signals
 logic       awready;
 logic       wready;
