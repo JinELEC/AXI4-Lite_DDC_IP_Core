@@ -144,4 +144,6 @@ The integration increases LUT and FF usage by approximately 2.9% and 6.1%, respe
 ## Conclusion
 The DDC architecture was successfully implemented using a phase accumulator, CORDIC-based digital mixer, and parameterized FIR filter. The design was verified through simulation and frequency-domain analysis, confirming correct frequency translation and attenuation.
 
-The results demonstrate the trade-off between DDC with different FIR taps and FPGA resource utilization. Increasing the number of FIR taps improves attenuation performance but requires increased hardware complexity, higher power consumption, and reduced maximum operating frequency.
+The results demonstrate the trade-off between DDC with different FIR taps and FPGA resource utilization. Increasing the number of FIR taps improves attenuation performance but requires increased higher power consumption and reduced maximum operating frequency.
+
+
