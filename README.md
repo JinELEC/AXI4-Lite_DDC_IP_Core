@@ -139,7 +139,7 @@ The hardware overhead due to the AXI4-Lite slave controller integration was anal
 | 32-tap DDC | 1751 | 1302 | 32 | 0.172 W | 83.55 MHz |
 | 32-tap DDC + AXI4-Lite | 1801 | 1382 | 32 | 0.170 W | 84.27 MHz |
 
-The integration increases LUT and FF usage by approximately 2.9% and 6.1%, respectively, while DSP utilization remains unchanged. The total on-chip power and maximum operating frequency show negligible variation.
+The integration increases LUT and FF usage by approximately 2.9% and 6.1%, respectively, while DSP utilization remains unchanged. The total on-chip power and maximum operating frequency show negligible variation after integration.
 
 ## Conclusion
 The DDC architecture was successfully implemented using a phase accumulator, CORDIC-based digital mixer, and parameterized FIR filter. The design was verified through simulation and frequency-domain analysis, confirming correct frequency translation and attenuation.
