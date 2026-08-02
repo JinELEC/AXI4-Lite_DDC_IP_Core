@@ -84,11 +84,11 @@ module tb_ddc_top;
     always_ff @(posedge clk or negedge n_rst) begin
         if (!n_rst) begin
             sample_idx <= 0;
-            x_i        <= 8'sd0; // 8-bit Signed 0 초기화
+            x_i        <= 8'sd0; 
         end
         else if (en_i) begin
-            x_i        <= adc_mem[sample_idx]; // 8-bit Signed 대입
-            sample_idx <= (sample_idx + 1) % 1024; // 1024개 순환
+            x_i        <= adc_mem[sample_idx]; 
+            sample_idx <= (sample_idx + 1) % 1024; 
         end
     end
 
