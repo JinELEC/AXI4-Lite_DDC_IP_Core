@@ -12,7 +12,7 @@
 ## Introduction
 A Digital Down Converter (DDC) is widely used in digital communication systems to convert a digitized input signal from an intermediate frequency (IF) to baseband. This frequency translation enables efficient digital signal processing by shifting the desired signal to a lower frequency range and suppressing unwanted frequency components through filtering.
 
-In this project, a phase accumulator, a CORDIC-based digital mixer, and a parameterized FIR filter, and an AXI4-Lite control interface are implemented to develop a configurable DDC IP.
+In this project, a phase accumulator, a CORDIC-based digital mixer, a parameterized FIR filter, and an AXI4-Lite control interface are implemented to develop a configurable DDC IP.
 
 ## Architecture
 ### Block Diagram
