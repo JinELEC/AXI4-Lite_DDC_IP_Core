@@ -42,6 +42,15 @@ A previously developed parameterized FIR accelerator was used and filter coeffic
 An AXI4-Lite slave controller is integrated to enable software configuration of the DDC IP through memory-mapped registers. 
 The controller decodes AXI write transactions and updates the configuration registers to set key parameters of DDC such as enable signal and phase word.
 
+#### AXI4-Lite Register Map
+| Address | Register | Description |
+|---------|----------|-------------|
+| 0x00 | CONTROL | Enable or disable the DDC |
+| 0x04 | PHASE_WORD | Configure the phase word |
+| 0x08 | STATUS | DDC output status |
+| 0x0C | RESERVED | Reserved for extra work |
+
+
 ## Getting Started
 ### Requirements
 - ModelSim 2020.1
