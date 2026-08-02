@@ -71,13 +71,6 @@ always_ff @(posedge clk, negedge n_rst) begin
     else
         done_flag[0] <= valid_i;
 end
-/* 
-1. stage 1: >>> 0 -> 45도 좌표계에서 움직임
-2. stage 2: >>> 1 -> 26.565도 좌표계에서 움직임
-3. stage 3: >>> 2 -> 14.036도 좌표계에서 움직임
-...
-그래서 각 stage 마다 오른쪽으로 shift 하는 값을 다르게 해야 목표로 하는 target angle 에 수렴함.
-*/
 
 // ===========================================
 // 1. Pipeline stage 1
