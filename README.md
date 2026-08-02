@@ -1,4 +1,4 @@
-# AXI4-Lite Configurable Digital Down Converter (DDC) IP Core
+# AXI4-Lite Configurable DDC IP Core
 
 ## Contents
 - [Introduction](#introduction)
