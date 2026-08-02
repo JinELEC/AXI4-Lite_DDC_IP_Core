@@ -48,8 +48,6 @@ The controller decodes AXI write transactions and updates the configuration regi
 | 0x00 | CONTROL | Enable or disable the DDC |
 | 0x04 | PHASE_WORD | Configure the phase word |
 | 0x08 | STATUS | DDC output status |
-| 0x0C | RESERVED | Reserved for extra work |
-
 
 ## Getting Started
 ### Requirements
@@ -61,18 +59,21 @@ The controller decodes AXI write transactions and updates the configuration regi
 ### Repository Structure
 ``` 
 ├── rtl/
-│   ├── ddc_top.sv              # Top-level DDC module
-│   ├── phase_accumulator.sv    # Phase accumulator
-│   ├── cordic.sv               # CORDIC-based digital mixer
-│   └── fir.sv                  # Parameterized FIR filter
+│   ├── ddc_axi_top.sv              # Top-level AXI4-Lite DDC IP module
+│   ├── axi4_lite_controller.sv     # AXI4-Lite slave controller
+│   ├── ddc_top.sv                  # DDC datapath module
+│   ├── phase_accumulator.sv        # Phase accumulator
+│   ├── cordic.sv                   # CORDIC-based mixer
+│   └── fir.sv                      # Parameterized FIR filter
 ├── tb/
-│   └── tb_ddc_top.sv           # Testbench for top-level DDC
+│   ├── tb_ddc_top.sv               # Testbench for DDC datapath verification
+│   └── tb_ddc_axi_top.sv           # Testbench for AXI4-Lite DDC IP verification
 ├── matlab/
-│   ├── fir_coefficients.m      # Filter coefficients generation
-│   └── fft_analysis.m          # FFT analysis of CORDIC and DDC outputs
+│   ├── fir_coefficients.m          # Filter coefficients generation
+│   └── fft_analysis.m              # FFT analysis of CORDIC and DDC outputs
 └── docs/
-    ├── adc_samples.txt         # Recorded ADC sample data used for verification
-    └── ...                     # Diagrams and result images
+    ├── adc_samples.txt             # Recorded ADC sample data 
+    └── ...                         # Diagrams and result images
 ```
 
 ### Key Parameters
