@@ -52,7 +52,7 @@ The controller decodes AXI write transactions and updates the configuration regi
 ## Getting Started
 ### Requirements
 - ModelSim 2020.1
-- MATLAB R2024b - for FIR coefficients generation and FFT analysis
+- MATLAB R2024b - for FIR coefficient generation and FFT analysis
 - Vivado 2022.1 - for synthesis and implementation
 - FPGA: Xilinx Artix-7
 
