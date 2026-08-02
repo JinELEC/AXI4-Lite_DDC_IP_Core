@@ -59,15 +59,15 @@ The controller decodes AXI write transactions and updates the configuration regi
 ### Repository Structure
 ``` 
 ├── rtl/
-│   ├── ddc_axi_top.sv              # Top-level AXI4-Lite DDC IP module
+│   ├── ddc_axi_top.sv              # Top-level AXI4-Lite DDC IP 
 │   ├── axi4_lite_controller.sv     # AXI4-Lite slave controller
-│   ├── ddc_top.sv                  # DDC datapath module
+│   ├── ddc_top.sv                  # DDC Top-level module
 │   ├── phase_accumulator.sv        # Phase accumulator
 │   ├── cordic.sv                   # CORDIC-based mixer
 │   └── fir.sv                      # Parameterized FIR filter
 ├── tb/
-│   ├── tb_ddc_top.sv               # Testbench for DDC datapath verification
-│   └── tb_ddc_axi_top.sv           # Testbench for AXI4-Lite DDC IP verification
+│   ├── tb_ddc_top.sv               # Testbench for DDC datapath 
+│   └── tb_ddc_axi_top.sv           # Testbench for AXI4-Lite DDC IP 
 ├── matlab/
 │   ├── fir_coefficients.m          # Filter coefficients generation
 │   └── fft_analysis.m              # FFT analysis of CORDIC and DDC outputs
