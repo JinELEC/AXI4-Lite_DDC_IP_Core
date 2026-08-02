@@ -87,9 +87,11 @@ The controller decodes AXI write transactions and updates the configuration regi
 | FIR Tap Configurations | 16 / 32 / 64 |
 
 ## Verification Methodology
-The design was verified in two stages. First, the functionality of the DDC was validated using fixed ADC input samples and a fixed phase word. The generated I/Q outputs and filtered responses were analysed for different FIR tap configurations (16-, 32-, and 64-taps).
+The design was verified in three stages. First, the functionality of the DDC was validated using fixed ADC input samples and a fixed phase word. The generated I/Q outputs and filtered responses were analysed for different FIR tap configurations (16-, 32-, and 64-taps).
 
 Second, the complete DDC was verified using recorded ADC sample data to evaluate the frequency response of the DDC. FFT analysis was performed using MATLAB to compare the attenuation of the desired signal and unwanted frequency components for each FIR filter configuration.
+
+Finally, the DDC with AXI4-Lite controller was verified by configuring through memory-mapped registers. AXI4-Lite write transactions were performed to update the enable signal and phase word. 
 
 ## Result and Analysis
 ### Test 1: Functional Verification
