@@ -125,9 +125,9 @@ The hardware resource and performance were evaluated for different FIR filter ta
 The results show the trade-offs between filtering performance, FPGA resource usage, power consumption, and maximum clock frequency (Fmax). 
 | FIR Taps | LUT | FF | DSP | Total On-Chip Power | Fmax |
 |--------|----|---|----|------------|-----|
-| 16-tap | 860 | 771 | 8 | 0.12 W | 117.21 MHz |
-| 32-tap | 1751 | 1302 | 32 | 0.172 W | 83.55 MHz |
-| 64-tap | 4515 | 2304 | 128 | 0.345 W | 57.60 MHz |
+| 16-tap | 864 | 769 | 8 | 0.121 W | 116.31 MHz |
+| 32-tap | 1072 | 955 | 16 | 0.133 W | 104.35 MHz |
+| 64-tap | 1805 | 1233 | 32 | 0.171 W | 83.43 MHz |
 
 As the number of taps increases, the hardware resource utilization and power consumption increase due to the increased number of DSPs and registers. However, a higher number of taps shows improved filtering performance with better attenuation of unwanted frequency components. 
 
