@@ -117,7 +117,7 @@ FFT analysis using MATLAB was then performed to evaluate the frequency response 
 The 240 kHz component indicates the desired down-converted signal, while the 440 kHz component represents an unwanted frequency component. Increasing the number of FIR taps improves the attenuation of unwanted components.
 
 ### Test 3: AXI4-Lite Integration Verification
-![AXI4-Lite_Verification](docs/DDC_AXI_waveform.png)
+![AXI4-Lite_Verification](docs/DDC_AXI_Output.png)
 
 ## FPGA Resource Utilization and Performance Analysis
 The hardware resource and performance were evaluated for different FIR filter tap configurations.
