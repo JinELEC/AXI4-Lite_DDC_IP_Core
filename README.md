@@ -137,8 +137,8 @@ The DDC using 16-tap FIR achieves the highest operating frequency and lowest res
 The hardware overhead due to the AXI4-Lite slave controller integration was analysed using the 32-tap FIR configuration.
 | Configuration | LUT | FF | DSP | Total On-Chip Power | Fmax |
 |---|---|---|---|---|---|
-| 32-tap DDC | 1751 | 1302 | 32 | 0.172 W | 83.55 MHz |
-| 32-tap DDC + AXI4-Lite | 1801 | 1382 | 32 | 0.170 W | 84.27 MHz |
+| 32-tap DDC | 1072 | 955 | 32 | 0.133 W | 104.35 MHz |
+| 32-tap DDC + AXI4-Lite | 1031 | 1382 | 32 | 0.138 W | 103.39 MHz |
 
 The integration increases LUT and FF usage by approximately 2.9% and 6.1%, respectively, while DSP utilization remains unchanged. The total on-chip power and maximum operating frequency show negligible variation after integration.
 
