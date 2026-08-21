@@ -31,7 +31,7 @@ module tb_ddc_top;
     end
 
     // en_i
-    logic [3:0] cnt;
+    logic [4:0] cnt;
     always_ff @(posedge clk, negedge n_rst) begin
         if(!n_rst) 
             cnt <= '0;
@@ -39,7 +39,7 @@ module tb_ddc_top;
             cnt <= cnt + 1'b1;
     end
 
-    assign en_i = (cnt == 4'd15) ? 1'b1 : 1'b0; 
+    assign en_i = (cnt == 5'd31) ? 1'b1 : 1'b0; 
 
     // ==========================================
     // task for normal DDC operation
@@ -96,8 +96,8 @@ module tb_ddc_top;
         phase_word = '0;
 
         @(posedge clk);
-        phase_word = 10; // low frequency
-        repeat(10000) @(posedge clk);
+        phase_word = 72; 
+        repeat(40000) @(posedge clk);
 
         $fclose(fout);
         $fclose(cordic_file);
