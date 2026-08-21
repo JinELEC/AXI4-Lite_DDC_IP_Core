@@ -28,18 +28,12 @@ For the main verification:
 - Sampling rate: 12.5 MSPS
 - Phase word: 72°
 - Phase sequence:
-
-\[
-0^\circ \rightarrow 72^\circ \rightarrow 144^\circ
-\rightarrow 216^\circ \rightarrow 288^\circ \rightarrow 0^\circ
-\]
+**0° → 72° → 144° → 216° → 288° → 0°**
 
 Since the phase completes one full 360° rotation in five samples, the
 generated digital LO frequency is:
 
-\[
-f_{LO}=\frac{12.5\text{ MHz}}{5}=2.5\text{ MHz}
-\]
+**f_LO = 12.5 MHz / 5 = 2.5 MHz**
 
 
 ### CORDIC Mixer
