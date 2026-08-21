@@ -1,12 +1,12 @@
 %% ==========================================================
-% Linear FFT of CORDIC Output & FIR Output
+% Linear FFT of CORDIC Output & FIR Output (MHz Scale)
 % ==========================================================
 clear;
 clc;
 close all;
 
 %% Sampling Frequency
-Fs = 12.5e6;     % 12.5 MSPS
+Fs = 12.5e6;     % 32-clock interval (100 MHz / 32)
 
 %% Read files
 cordic = load('cordic_out.txt');
@@ -20,40 +20,35 @@ fir    = fir - mean(fir);
 N1 = length(cordic);
 N2 = length(fir);
 
-CORDIC_FFT = abs(fft(cordic))/N1;
-FIR_FFT    = abs(fft(fir))/N2;
+CORDIC_FFT = abs(fft(cordic)) / N1;
+FIR_FFT    = abs(fft(fir)) / N2;
 
 %% Positive Spectrum
-CORDIC_FFT = CORDIC_FFT(1:N1/2);
-FIR_FFT    = FIR_FFT(1:N2/2);
+CORDIC_FFT = CORDIC_FFT(1:floor(N1/2));
+FIR_FFT    = FIR_FFT(1:floor(N2/2));
 
-f1 = (0:N1/2-1) * Fs / N1;
-f2 = (0:N2/2-1) * Fs / N2;
+% Frequency Axis (MHz)
+f1_mhz = (0:floor(N1/2)-1) * (Fs / N1) / 1e6;
+f2_mhz = (0:floor(N2/2)-1) * (Fs / N2) / 1e6;
 
 %% ==========================================================
-% CORDIC Output FFT
+% Figure 1: CORDIC Output FFT
 %% ==========================================================
-figure;
-
-plot(f1/1e3, CORDIC_FFT, 'LineWidth', 1.5);
-
+figure('Color', 'w');
+plot(f1_mhz, CORDIC_FFT, 'LineWidth', 1.5, 'Color', [0 0.4470 0.7410]);
 grid on;
-xlabel('Frequency (kHz)');
-ylabel('Magnitude');
-title('CORDIC Output FFT');
-
-xlim([0 1000]);
+xlabel('Frequency (MHz)', 'FontSize', 11);
+ylabel('Magnitude', 'FontSize', 11);
+title('CORDIC Output FFT', 'FontSize', 12, 'FontWeight', 'bold');
+xlim([0 Fs/(2*1e6)]);
 
 %% ==========================================================
-% FIR Output FFT
+% Figure 2: FIR Output FFT
 %% ==========================================================
-figure;
-
-plot(f2/1e3, FIR_FFT, 'LineWidth', 1.5);
-
+figure('Color', 'w');
+plot(f2_mhz, FIR_FFT, 'LineWidth', 1.5, 'Color', [0.8500 0.3250 0.0980]);
 grid on;
-xlabel('Frequency (kHz)');
-ylabel('Magnitude');
-title('FIR Output FFT');
-
-xlim([0 1000]);
+xlabel('Frequency (MHz)', 'FontSize', 11);
+ylabel('Magnitude', 'FontSize', 11);
+title('FIR Filter Output FFT (64-tap)', 'FontSize', 12, 'FontWeight', 'bold');
+xlim([0 Fs/(2*1e6)]);
