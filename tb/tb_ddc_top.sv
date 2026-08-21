@@ -9,8 +9,8 @@ module tb_ddc_top;
     logic signed [7:0]  y_i;
     
     // output
-    logic signed [15:0] x_o; // 16, 32, 64-bit
-    logic signed [15:0] y_o; // 16, 32, 64-bit
+    logic signed [31:0] x_o; // 16, 32, 64-bit
+    logic signed [31:0] y_o; // 16, 32, 64-bit
     logic               x_o_ready;
     logic               y_o_ready;
 
