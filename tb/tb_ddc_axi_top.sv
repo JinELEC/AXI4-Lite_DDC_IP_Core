@@ -55,7 +55,7 @@ module tb_ddc_axi_top;
     end
 
     // adc_valid
-    logic [3:0] cnt;
+    logic [4:0] cnt;
     always_ff @(posedge ACLK, negedge ARESETn) begin
         if(!ARESETn) 
             cnt <= '0;
@@ -63,7 +63,7 @@ module tb_ddc_axi_top;
             cnt <= cnt + 1'b1;
     end
 
-    assign adc_valid = (cnt == 4'd15) ? 1'b1 : 1'b0; 
+    assign adc_valid = (cnt == 5'd31) ? 1'b1 : 1'b0; 
 
     // ===================================================
     // Read ADC sample data
@@ -135,7 +135,7 @@ module tb_ddc_axi_top;
     endtask
 
     // ==========================================================================
-    // Task 2. Write 10'b00000_01010 (10) to controller slv_reg1 - set phase_word
+    // Task 2. Write 10'b00010_01000 (72) to controller slv_reg1 - set phase_word
     // ==========================================================================
     task setPhaseWord;
         begin
@@ -149,7 +149,7 @@ module tb_ddc_axi_top;
 
             s_axi_awaddr  = 6'h04;
             s_axi_awvalid = 1'b1;
-            s_axi_wdata   = 32'd10; // 1 = enable, 0 = disable
+            s_axi_wdata   = 32'd72; // 1 = enable, 0 = disable
             s_axi_wstrb   = 4'b0011;
             s_axi_wvalid  = 1'b1;
             s_axi_bready  = 1'b1;
