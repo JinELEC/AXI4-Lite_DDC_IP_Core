@@ -39,29 +39,25 @@ module tb_ddc_top;
             cnt <= cnt + 1'b1;
     end
 
-    assign en_i = (cnt == 5'd31) ? 1'b1 : 1'b0; 
+    assign en_i = (cnt == 5'd19) ? 1'b1 : 1'b0; 
 
-    // ==========================================
-    // task for normal DDC operation
-    // ==========================================
     task test1; // fix ADC input
         begin
         x_i = '0;
         phase_word = '0;
 
         @(posedge clk);
-
         x_i = 100;
         phase_word = 10; // low frequency
-        repeat(3000) @(posedge clk);
 
+        repeat(2000) @(posedge clk);
         @(posedge clk);
         phase_word = 60; // high frequency
-        repeat(3000) @(posedge clk);
+        repeat(2000) @(posedge clk);
     end
     endtask
 
-    // Read ADC Samples from txt file
+    // ------------------------------------------------------
     logic signed [7:0] adc_mem [0:1023];
     integer sample_idx = 0;
     integer file_handle, scan_result, i;
@@ -80,15 +76,14 @@ module tb_ddc_top;
         $fclose(file_handle);
     end
 
-    // Apply ADC samples to DDC
     always_ff @(posedge clk or negedge n_rst) begin
         if (!n_rst) begin
             sample_idx <= 0;
-            x_i        <= 8'sd0; 
+            x_i        <= 8'sd0; // 8-bit Signed 0 초기화
         end
         else if (en_i) begin
-            x_i        <= adc_mem[sample_idx]; 
-            sample_idx <= (sample_idx + 1) % 1024; 
+            x_i        <= adc_mem[sample_idx]; // 8-bit Signed 대입
+            sample_idx <= (sample_idx + 1) % 1024; // 1024개 순환
         end
     end
 
@@ -96,18 +91,55 @@ module tb_ddc_top;
         phase_word = '0;
 
         @(posedge clk);
-        phase_word = 72; 
+        phase_word = 10'd120; 
         repeat(40000) @(posedge clk);
 
-        $fclose(fout);
-        $fclose(cordic_file);
+        /* @(posedge clk);
+        phase_word = 30; // low frequency
+        repeat(3000) @(posedge clk);
+
+        @(posedge clk);
+        phase_word = 60; // low frequency
+        repeat(3000) @(posedge clk); */
+
+    $fclose(fout);
+    $fclose(cordic_file);
+    $finish;
+    end
+
+    // ------------------------------------------------------
+    // FIR output file
+    // ------------------------------------------------------
+    integer fout;
+
+    // ------------------------------------------------------
+    // Open output file
+    // ------------------------------------------------------
+    initial begin
+    fout = $fopen("fir_out.txt", "w");
+
+    if(fout == 0) begin
+        $display("Output file open error");
         $finish;
     end
+    end
+
+    // ------------------------------------------------------
+    // Save FIR output
+    // ------------------------------------------------------
+    always_ff @(posedge clk) begin
+    if(en_i)
+        $fdisplay(fout, "%0d", x_o);
+    end 
 
     // ------------------------------------------------------
     // CORDIC output file
     // ------------------------------------------------------
     integer cordic_file;
+
+    // ------------------------------------------------------
+    // Open CORDIC output file
+    // ------------------------------------------------------
     initial begin
         cordic_file = $fopen("cordic_out.txt", "w");
 
@@ -117,28 +149,13 @@ module tb_ddc_top;
         end
     end
 
+    // ------------------------------------------------------
+    // Save CORDIC output
+    // ------------------------------------------------------
     always_ff @(posedge clk) begin
         if(en_i)
             $fdisplay(cordic_file, "%0d", DDC_TOP.wire_x);
     end
-
-    // ------------------------------------------------------
-    // FIR output file
-    // ------------------------------------------------------
-    integer fout;
-    initial begin
-        fout = $fopen("fir_out.txt", "w");
-
-        if(fout == 0) begin
-            $display("Output file open error");
-            $finish;
-        end
-    end
-
-    always_ff @(posedge clk) begin
-    if(en_i)
-        $fdisplay(fout, "%0d", x_o);
-    end 
 
     ddc_top DDC_TOP(
         .clk            (clk),
