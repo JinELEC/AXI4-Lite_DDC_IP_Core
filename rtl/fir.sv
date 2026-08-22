@@ -1,35 +1,33 @@
 module fir #(
     parameter N = 32, // 16, 32, 64
     parameter M = $clog2(N) // 4
-
-    )(
-    input  logic                clk,
-    input  logic                n_rst,
-    input  logic signed [N-1:0] in,
-    input  logic                input_ready,
-    output logic                output_ready,
-    output logic signed [N-1:0] out
+)(
+    input  logic                   clk,
+    input  logic                   n_rst,
+    input  logic signed [N-1:0]    in,
+    input  logic                   input_ready,
+    output logic                   output_ready,
+    output logic signed [N-1:0]    out
 );
 
 // Samples
-typedef logic signed [15:0] sample_array;
+typedef logic signed [N-1:0] sample_array;
 sample_array samples [0:N-1];
 
-// Filter coefficients (low-pass filter, 16-bit, Fs = 12.5 MHz, 0.04)
-/* const sample_array coefficients [0:N-1] =
-'{112,243,618,1293,2217,3225,4089,4587,4587,4089,3225,2217,1293,618,243,112}; */  // multiplied by 2^15 
+typedef logic signed [15:0] coeff_array;
 
+// Filter coefficients
+// 16-tap
+/* const coeff_array coefficients [0:N-1] =
+'{-42,-177,-406,-352,669,2961,5846,7885,7885,5846,2961,669,-352,-406,-177,-42}; */
 
-// Filter coefficients (low-pass filter, 32-bit, 0.04) 
-const sample_array coefficients [0:N-1] =
-'{-54,-64,-82,-97,-93,-47,66,266,562,951,1412,1909,2396,2821,3136,3304,3304,3136,2821,2396,1909,1412,951,562,266,66,-47,-93,-97,-82,-64,-54}; 
+// 32-tap 
+const coeff_array coefficients [0:N-1] =
+'{-21,-60,-84,-52,78,273,387,221,-301,-974,-1305,-731,1017,3642,6306,7987,7987,6306,3642,1017,-731,-1305,-974,-301,221,387,273,78,-52,-84,-60,-21}; 
 
-
-// Filter coefficients (low-pass filter, 64-bit, 0.060) 
-/* const sample_array coefficients [0:N-1] =
-'{-12,-4,5,17,31,48,65,79,86,83,64,26,-31,-106,-194,-284,-366,-424,-442,-405,-300,-120,139,470,862,1295,1744,
-2182,2578,2904,3137,3257,3257,3137,2904,2578,2182,1744,1295,862,470,139,-120,-300,-405,-442,-424,-366,-284,-194,
--106,-31,26,64,83,86,79,65,48,31,17,5,-4,-12}; */ 
+// 64-tap 
+/* const coeff_array coefficients [0:N-1] = 
+'{-10,-26,-29,-14,17,50,61,31,-37,-109,-130,-64,76,217,254,123,-142,-398,-459,-220,254,708,822,397,-468,-1347,-1637,-848,1111,3807,6403,7994,7994,6403,3807,1111,-848,-1637,-1347,-468,397,822,708,254,-220,-459,-398,-142,123,254,217,76,-64,-130,-109,-37,31,61,50,17,-14,-29,-26,-10}; */
 
 // State
 typedef enum logic [2:0] {IDLE, LOAD, PROCESS, ARRANGE, DONE} state_type;
@@ -37,23 +35,23 @@ state_type present_state;
 state_type next_state;
 
 // pipeline register
-logic signed [N-1:0] reg_sample [0:3];
-logic signed [15:0] reg_coefficient [0:3];
+logic signed [N-1:0]  reg_sample [0:3];
+logic signed [15:0]   reg_coefficient [0:3]; 
 
 // address counter
 logic unsigned [M:0] address; 
 
 // sum
-logic signed [2*N-1:0] sum;
-logic signed [2*N-1:0] reg_sum1; // partial sum register
-logic signed [2*N-1:0] reg_sum2; // partial sum register
+logic signed [N+22:0] sum;
+logic signed [N+22:0] reg_sum1;
+logic signed [N+22:0] reg_sum2;
 
 // control signals
 logic reset_accumulator;
 logic load;
 logic count;
-logic partial_sum; // partial sum en
-logic final_sum;   // final sum en
+logic partial_sum;
+logic final_sum;
 
 // samples 
 always_ff @(posedge clk) begin
@@ -61,7 +59,7 @@ always_ff @(posedge clk) begin
         for(int i = N-1; i >= 1; i--) begin
             samples[i] <= samples[i-1];
         end
-    samples[0] <= in;
+        samples[0] <= in;
     end
 end
 
@@ -79,7 +77,7 @@ end
 logic arr_cnt;
 always_ff @(posedge clk, negedge n_rst) begin
     if(!n_rst) 
-        arr_cnt <= 0;
+        arr_cnt <= 1'b0;
     else if(present_state == ARRANGE)
         arr_cnt <= 1'b1;
     else 
@@ -142,8 +140,9 @@ always_ff @(posedge clk, negedge n_rst) begin
         sum <= sum + reg_sum1 + reg_sum2;
 end
 
+// Output shift
 logic signed [N-1:0] scaled_sum;
-assign scaled_sum = $signed(sum) >>> (15);
+assign scaled_sum = (N)'($signed(sum) >>> 15);
 
 // output
 always_ff @(posedge clk) begin
@@ -167,7 +166,7 @@ always_comb begin
     partial_sum       = 1'b0;
     final_sum         = 1'b0;
     output_ready      = 1'b0;
-    next_state        = present_state; // prevent latch
+    next_state        = present_state;
 
     case(present_state)
         IDLE: begin
@@ -182,16 +181,15 @@ always_comb begin
         end
 
         PROCESS: begin
-            count  = 1'b1;
+            count = 1'b1;
             if(address > 0) partial_sum = 1'b1; 
             if(address > 4) final_sum = 1'b1;
             if(address == N-4) begin
-                // count = 1'b0;
                 next_state = ARRANGE;
             end
         end
 
-        ARRANGE: begin // process remaining partial sum
+        ARRANGE: begin
             partial_sum = 1'b1;
             final_sum   = 1'b1;
             if(arr_cnt) begin
@@ -203,8 +201,8 @@ always_comb begin
 
         DONE: begin
             output_ready = 1'b1;
-            next_state = IDLE;
-            end
+            next_state   = IDLE;
+        end
         
         default: next_state = IDLE;
     endcase
