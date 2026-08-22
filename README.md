@@ -14,7 +14,7 @@ A Digital Down Converter (DDC) is widely used in digital communication systems t
 
 In this project, a phase accumulator, a CORDIC-based digital mixer, a parameterized FIR filter, and an AXI4-Lite control interface are integrated to develop a configurable DDC IP.
 
-The implemented DDC receives a 1.4667 MHz IF input signal sampled at 5 MSPS. A phase accumulator and CORDIC-based NCO generate a 1.6667 MHz digital local oscillator, translating the 1.4667 MHz to 200 kHz. The FIR filter then suppresses the unwanted 1.8667 MHz (due to aliasing of the 3.1333 MHz sum-frequency component). mixing component.
+The implemented DDC receives a 1.4667 MHz IF input signal sampled at 5 MSPS. A phase accumulator and CORDIC-based NCO generate a 1.6667 MHz digital local oscillator, translating the 1.4667 MHz to 200 kHz. The FIR filter then suppresses the unwanted 1.8667 MHz (due to aliasing of the 3.1333 MHz sum-frequency component). 
 
 ## Architecture
 ### Block Diagram
@@ -30,7 +30,7 @@ For the main verification:
 - Phase sequence:
 **0° → 120° → 240° → 0°**
 
-Since the phase completes one full 360° rotation in five samples, the
+Since the phase completes one full 360° rotation in three samples, the
 generated digital LO frequency is:
 
 **f_LO = 5 MHz / 3 ≈ 1.6667 MHz**
