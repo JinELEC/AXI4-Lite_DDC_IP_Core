@@ -20,7 +20,7 @@ module tb_ddc_axi_top;
 
     logic signed [7:0]           adc_data;
     logic signed [7:0]           y_i;
-    logic                        adc_valid; // high for every 15-clock
+    logic                        adc_valid; // high for every 20-clock
 
     assign y_i = '0;
     
