@@ -117,29 +117,22 @@ The controller decodes AXI write transactions and updates the configuration regi
 | Parameter | Value |
 |---|---|
 | Clock Frequency | 100 MHz |
-| ADC Sampling Rate | 12.5 MSPS |
-| Input Frequency | 3.0 MHz |
-| Digital LO Frequency | 2.5 MHz |
-| Phase Word | 72° |
+| ADC Sampling Rate | 5 MSPS |
+| Input Frequency | 1.4667 MHz |
+| Digital LO Frequency | 1.6667 MHz |
+| Phase Word | 120° |
 | ADC Input Width | 8-bit signed |
 | Phase Word Width | 10-bit |
 | DDC Output Width | 16 / 32 / 64-bit (depends on FIR tap configuration) |
 | FIR Tap Configurations | 16 / 32 / 64 |
 
 ## Verification Methodology
-The design was verified in three stages. First, the functionality of the DDC was validated using fixed ADC input samples and a fixed phase word. The generated I/Q outputs and filtered responses were analysed for different FIR tap configurations (16-, 32-, and 64-taps).
+The complete DDC was verified using recorded ADC sample data to evaluate its frequency response. FFT analysis was performed in MATLAB to compare the attenuation of the desired signal and unwanted frequency components across the 16-, 32-, and 64-tap FIR configurations.
 
-Second, the complete DDC was verified using recorded ADC sample data to evaluate the frequency response of the DDC. FFT analysis was performed using MATLAB to compare the attenuation of the desired signal and unwanted frequency components for each FIR filter configuration.
-
-Finally, the DDC with AXI4-Lite controller was verified by configuring through memory-mapped registers. AXI4-Lite write transactions were performed to update the enable signal and phase word. 
+The DDC with AXI4-Lite controller was then verified by configuring the design through memory-mapped registers, updating the enable signal and phase word.
 
 ## Result and Analysis
-### Test 1: Functional Verification
-![Functional_Verification](docs/Normalcomparison.png)
-Comparison of ModelSim waveforms of the DDC using 16-, 32-, and 64-tap FIR filters with fixed ADC input value and a fixed phase word. 
-The simulation results confirm correct operation of the DDC for different FIR tap configurations. Each component operates correctly after the pipelined latency.
-
-### Test 2: DDC Verification Using Recorded ADC Samples
+### Test 1: DDC Verification Using Recorded ADC Samples
 ![Frequency-Domain_Verification](docs/Output_Comparison.png)
 The ModelSim waveform shows the time-domain output of the DDC for different FIR tap configurations. As the number of FIR taps increases, the filtered output becomes smoother due to improved suppression of unwanted frequency components.
 
@@ -153,9 +146,9 @@ FFT analysis using MATLAB was then performed to evaluate the frequency response 
 | 32-tap | -0.062 dB | -20.01 dB |
 | 64-tap | 0.003 dB | -33.77 dB |
 
-The 240 kHz component indicates the desired down-converted signal, while the 440 kHz component represents an unwanted frequency component. Increasing the number of FIR taps improves the attenuation of unwanted components.
+The 0.2 MHz component indicates the desired down-converted signal, while the 1.8667 MHz component represents an unwanted frequency component. Increasing the number of FIR taps improves the attenuation of unwanted components.
 
-### Test 3: AXI4-Lite Integration Verification
+### Test 2: AXI4-Lite Integration Verification
 ![AXI4-Lite_Verification](docs/DDC_AXI_Output.png)
 
 ## FPGA Resource Utilization and Performance Analysis
