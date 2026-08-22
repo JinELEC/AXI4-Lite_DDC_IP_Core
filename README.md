@@ -143,11 +143,11 @@ The ModelSim waveform shows the time-domain output of the DDC for different FIR 
 FFT analysis using MATLAB was then performed to evaluate the frequency response and attenuation of different FIR configurations.
 
 ### Frequency Attenuation Comparison 
-| FIR Taps | 0.5 MHz | 5.5 MHz | 
+| FIR Taps | 0.2 MHz | 1.868 MHz | 
 |--------|-----|----|
-| 16-tap | -0.185 dB | -24.89 dB | 
-| 32-tap | -0.561 dB | -44.24 dB |
-| 64-tap | -0.372 dB | -42.52 dB |
+| 16-tap | 0.295 dB | -6.23 dB | 
+| 32-tap | -0.062 dB | -20.01 dB |
+| 64-tap | 0.003 dB | -33.77 dB |
 
 The 240 kHz component indicates the desired down-converted signal, while the 440 kHz component represents an unwanted frequency component. Increasing the number of FIR taps improves the attenuation of unwanted components.
 
@@ -160,9 +160,9 @@ The hardware resource and performance were evaluated for different FIR filter ta
 The results show the trade-offs between filtering performance, FPGA resource usage, power consumption, and maximum clock frequency (Fmax). 
 | FIR Taps | LUT | FF | DSP | Total On-Chip Power | Fmax |
 |--------|----|---|----|------------|-----|
-| 16-tap | 864 | 769 | 8 | 0.121 W | 116.31 MHz |
-| 32-tap | 1072 | 955 | 16 | 0.133 W | 104.35 MHz |
-| 64-tap | 1805 | 1233 | 32 | 0.171 W | 83.43 MHz |
+| 16-tap | 862 | 767 | 8 | 0.121 W | 116.66 MHz |
+| 32-tap | 1218 | 1105 | 16 | 0.135 W | 103.52 MHz |
+| 64-tap | 2607 | 1645 | 32 | 0.173 W | 80.76 MHz |
 
 As the number of taps increases, the hardware resource utilization and power consumption increase due to the increased number of DSPs and registers. However, a higher number of taps shows improved filtering performance with better attenuation of unwanted frequency components. 
 
@@ -172,8 +172,8 @@ The DDC using 16-tap FIR achieves the highest operating frequency and lowest res
 The hardware overhead due to the AXI4-Lite slave controller integration was analysed using the 32-tap FIR configuration.
 | Configuration | LUT | FF | DSP | Total On-Chip Power | Fmax |
 |---|---|---|---|---|---|
-| 32-tap DDC | 1072 | 955 | 32 | 0.133 W | 104.35 MHz |
-| 32-tap DDC + AXI4-Lite | 1031 | 1382 | 32 | 0.138 W | 103.39 MHz |
+| 32-tap DDC | 1218 | 1105 | 16 | 0.135 W | 103.52 MHz |
+| 32-tap DDC + AXI4-Lite | 1272 | 1181 | 16 | 0.140 W | 104.16 MHz |
 
 The integration increases LUT and FF usage by approximately 2.9% and 6.1%, respectively, while DSP utilization remains unchanged. The total on-chip power and maximum operating frequency show negligible variation after integration.
 
