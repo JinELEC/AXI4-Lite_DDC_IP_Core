@@ -14,7 +14,7 @@ A Digital Down Converter (DDC) is widely used in digital communication systems t
 
 In this project, a phase accumulator, a CORDIC-based digital mixer, a parameterized FIR filter, and an AXI4-Lite control interface are integrated to develop a configurable DDC IP.
 
-The implemented DDC receives a 1.4667 MHz IF input signal sampled at 5 MSPS. A phase accumulator and CORDIC-based NCO generate a 1.6667 MHz digital local oscillator, translating the 1.4667 MHz to 200 kHz. The FIR filter then suppresses the unwanted 1.868 MHz (due to aliasing of the 3.1333 MHz sum-frequency component). 
+The implemented DDC receives a 1.4667 MHz IF input signal sampled at 5 MSPS. A phase accumulator and CORDIC-based NCO generate a 1.6667 MHz digital local oscillator, translating the 1.4667 MHz to 200 kHz. The FIR filter then suppresses the unwanted 1.868 MHz mixing component (due to aliasing of the 3.1333 MHz sum-frequency component). 
 
 ## Architecture
 ### Block Diagram
@@ -172,7 +172,7 @@ The hardware overhead due to the AXI4-Lite slave controller integration was anal
 | 32-tap DDC | 1218 | 1105 | 16 | 0.135 W | 103.52 MHz |
 | 32-tap DDC + AXI4-Lite | 1272 | 1181 | 16 | 0.140 W | 104.16 MHz |
 
-The integration increases LUT and FF usage by approximately 4.43% and 6.88%, respectively, while DSP utilization remains unchanged. The total on-chip power increases by approximately 3.7%, and maximum clock frequency shows negligible variation after integration.
+The integration increases LUT and FF usage by approximately 4.43% and 6.88%, respectively, while DSP utilization remains unchanged. The total on-chip power increases by approximately 3.7%, and maximum clock frequency shows negligible 0.6% variation after integration.
 
 ## Conclusion
 The integrated DDC architecture was successfully implemented using a phase accumulator, CORDIC-based digital mixer, parameterized FIR filter, AXI4-Lite controller. The design was verified through simulation, frequency-domain analysis, and integration verification, confirming correct frequency translation, signal attenuation, and register-based configuration.
