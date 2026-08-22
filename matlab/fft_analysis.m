@@ -6,7 +6,7 @@ clc;
 close all;
 
 %% Sampling Frequency
-Fs = 12.5e6;     % 32-clock interval (100 MHz / 32)
+Fs = 5e6;   % 21-clock interval (100 MHz / 21) ≈ 4.7619 MHz
 
 %% Read files
 cordic = load('cordic_out.txt');
@@ -19,7 +19,6 @@ fir    = fir - mean(fir);
 %% FFT
 N1 = length(cordic);
 N2 = length(fir);
-
 CORDIC_FFT = abs(fft(cordic)) / N1;
 FIR_FFT    = abs(fft(fir)) / N2;
 
